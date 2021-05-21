@@ -1,6 +1,7 @@
 package com.chitkara.Music_Hoster.service;
 
-import com.chitkara.Music_Hoster.model.*;
+import com.chitkara.Music_Hoster.model.User;
+import com.chitkara.Music_Hoster.model.userLogin;
 import com.chitkara.Music_Hoster.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,11 +32,16 @@ public class UserService {
 
     public boolean loginUser(userLogin userLogin) {
 
-        if (this.UserRepository.existsById(userLogin.getEmailAddress())) {
+            Optional<User> user1 =this.UserRepository.findById(userLogin.getEmailAddress());
+            if(user1.isPresent()?user1.get().getPassword().equals(userLogin.getPassword()):false)
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
 
-            return true;
-        }
-        return false;
+
     }
 }
 
