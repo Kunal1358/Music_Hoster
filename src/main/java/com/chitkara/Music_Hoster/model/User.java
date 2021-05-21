@@ -6,44 +6,63 @@ import javax.persistence.*;
 @Table(name="users")
 public class User {
 
-    @Id
+
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     @Column(name = "id")
-    private int id;
+    private long id;
 
-    @Column(name = "emailAddress " , nullable = false)
+    @Column(name = "firstname" , nullable = false)
+    private String firstname;
+
+    @Column(name = "lastname" )
+    private String lastname;
+
+    @Id
+    @Column(name = "emailAddress" , nullable = false)
     private String emailAddress;
 
     @Column(name="passowrd" , nullable = false)
     private String password;
 
-    //The 'users' table is mapped to 'user_profile' table with One:One mapping
-    //cascade = CascadeType.ALL specifies that if a record in 'user_profile' table is deleted or updated, then
-    // all the records in 'users' table associated to that particular record in 'user_profile' table will
-    // be deleted or updated  first and then the record in the 'user_profile' table will be deleted or updated
-    //FetchType is EAGER
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //Below annotation indicates that the name of the column in 'users' table referring the primary key in 'user_profile' table will be 'profile_id'
-    @JoinColumn(name = "user_id")
-    private UserProfile profile;
 
+    @Column(name = "mobile_number" , nullable = false)
+    private String mobileNumber;
 
     User(){
     }
 
-    public User(String emailAddress, String password) {
+    public User(String firstname, String lastname, String emailAddress, String password, String mobileNumber) {
+        this.firstname = firstname;
+        this.lastname = lastname;
         this.emailAddress = emailAddress;
         this.password = password;
+        this.mobileNumber = mobileNumber;
     }
 
     //Getters and Setters
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getEmailAddress() {
@@ -52,6 +71,14 @@ public class User {
 
     public void setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    public String getMobileNumber() {
+        return mobileNumber;
+    }
+
+    public void setMobileNumber(String mobileNumber) {
+        this.mobileNumber = mobileNumber;
     }
 
     public String getPassword() {
@@ -65,8 +92,12 @@ public class User {
     @Override
     public String toString() {
         return "User {" +
-                "emailAddress='" + emailAddress + '\'' +
-                ", password=" + password +
+                "id='" + id +
+                "firstname='" + firstname +
+                ", lastname=" + lastname +
+                ", emailAddress='" + emailAddress +
+                ", password='" + password +
+                ", mobileNumber='" + mobileNumber +
                 '}';
     }
 

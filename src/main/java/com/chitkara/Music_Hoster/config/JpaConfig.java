@@ -27,7 +27,7 @@ public class JpaConfig {
         dataSource.setDriverClassName("org.postgresql.Driver");
         dataSource.setUrl("jdbc:postgresql://localhost:5432/MusicHoster");
         dataSource.setUsername("postgres");
-        dataSource.setPassword("password");
+        dataSource.setPassword("kunal1234");
         return  dataSource;
     }
 }
