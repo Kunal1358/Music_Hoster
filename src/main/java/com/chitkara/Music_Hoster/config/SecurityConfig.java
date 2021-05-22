@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //We will call this token to generate a token for User
                 //Allowed publically
-                .antMatchers("/token").permitAll()
+                .antMatchers("/users/login","/users/registration").permitAll()
                 //All request Authenticated
                 .anyRequest().authenticated()
                 .and()
