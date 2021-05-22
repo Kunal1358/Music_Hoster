@@ -18,6 +18,9 @@ public class User {
     @Column(name = "lastname" )
     private String lastname;
 
+    @Column(name = "mobile_number" , nullable = false)
+    private String mobileNumber;
+
     @Id
     @Column(name = "emailAddress" , nullable = false)
     private String emailAddress;
@@ -25,9 +28,6 @@ public class User {
     @Column(name="password" , nullable = false)
     private String password;
 
-
-    @Column(name = "mobile_number" , nullable = false)
-    private String mobileNumber;
 
     User(){
     }
