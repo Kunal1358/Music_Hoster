@@ -96,4 +96,17 @@ public class Music {
     public void setUser(User user) {
         this.user = user;
     }
+
+    @Override
+    public String toString() {
+        return "Music{" +
+                "Musicid=" + Musicid +
+                ", Title='" + Title + '\'' +
+                ", Genre='" + Genre + '\'' +
+                ", description='" + description + '\'' +
+                ", musicFile='" + musicFile + '\'' +
+                ", date=" + date +
+                ", user=" + user +
+                '}';
+    }
 }
