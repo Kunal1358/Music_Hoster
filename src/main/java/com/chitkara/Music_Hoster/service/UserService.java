@@ -32,16 +32,18 @@ public class UserService {
 
     public boolean loginUser(userLogin userLogin) {
 
-            Optional<User> user1 =this.UserRepository.findById(userLogin.getEmailAddress());
-            if(user1.isPresent()?user1.get().getPassword().equals(userLogin.getPassword()):false)
-            {
-                return true;
-            }
-            else {
-                return false;
-            }
-
+        Optional<User> user1 = this.UserRepository.findById(userLogin.getEmailAddress());
+        if (user1.isPresent() ? user1.get().getPassword().equals(userLogin.getPassword()) : false) {
+            return true;
+        } else {
+            return false;
+        }
     }
+    public String getpassword(String username){
+            Optional<User> user =this.UserRepository.findById(username);
+            return user.get().getPassword();
+        }
+
 }
 
 

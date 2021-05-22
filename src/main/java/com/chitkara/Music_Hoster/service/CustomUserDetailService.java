@@ -1,26 +1,28 @@
 package com.chitkara.Music_Hoster.service;
 
+import com.chitkara.Music_Hoster.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import com.chitkara.Music_Hoster.service.UserService;
 
 import java.util.ArrayList;
 
 @Service
 public class CustomUserDetailService implements UserDetailsService {
 
+    @Autowired
+    public UserService Userservice;
+
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        //Call a method from repo which will give data of the user if Using DB 19:06
+        String password=Userservice.getpassword(username);
 
-        //This method will return User when this Method is called
-        if(username.equals("Kunal")){
-            return new User("Kunal","Kunal",new ArrayList<>());
-        }else {
-            throw new UsernameNotFoundException("User Not Found!!!");
-        }
+            return new User(username,password,new ArrayList<>());
     }
 }
