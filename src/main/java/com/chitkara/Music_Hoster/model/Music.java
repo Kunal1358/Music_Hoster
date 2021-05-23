@@ -96,8 +96,6 @@ public class Music {
         this.url = url;
     }
 
-
-
     public long getSize() {
         return size;
     }

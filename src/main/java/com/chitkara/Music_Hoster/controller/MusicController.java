@@ -32,9 +32,6 @@ public class MusicController {
     @PostMapping("/upload")
 
 
-
-
-
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("musicname") String title,@RequestParam("genre") String genre,@RequestParam("description") String desc  ,@RequestParam("file") MultipartFile file) {
         String message = "";
         try {
