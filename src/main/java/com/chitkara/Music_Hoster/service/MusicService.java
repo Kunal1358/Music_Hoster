@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 
 import com.chitkara.Music_Hoster.repository.MusicRepository;
-    @Service
+@Service
     public class MusicService {
 
 
