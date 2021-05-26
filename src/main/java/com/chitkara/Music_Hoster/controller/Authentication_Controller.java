@@ -1,11 +1,13 @@
 package com.chitkara.Music_Hoster.controller;
 
+import com.chitkara.Music_Hoster.message.ResponseMessage;
 import com.chitkara.Music_Hoster.model.*;
 import com.chitkara.Music_Hoster.service.UserService;
 import com.chitkara.Music_Hoster.service.CustomUserDetailService;
 
 import com.chitkara.Music_Hoster.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.RestController;
@@ -49,10 +51,10 @@ public class Authentication_Controller {
         System.out.println(user.toString());
         if(UserService.loginUser(user))
         {
-            return generateToken(user);
+             return generateToken(user);
         }
         System.out.println("Go to Hell!");
-        return "false";
+        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage("Invalid Credentials"));
     }
 
     public ResponseEntity<?> generateToken(userLogin user) throws Exception {
