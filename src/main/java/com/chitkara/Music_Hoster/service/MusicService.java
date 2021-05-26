@@ -34,5 +34,7 @@ import com.chitkara.Music_Hoster.repository.MusicRepository;
             return MusicRepo.findAll().stream();
         }
 
+        public void Delete(String id){  MusicRepo.deleteById(id); }
+
     }
 
