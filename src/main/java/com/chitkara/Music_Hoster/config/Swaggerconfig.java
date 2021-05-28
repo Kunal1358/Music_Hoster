@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 public class Swaggerconfig {
     @Bean
-    public Docket myapi()
+    public Docket postapi()
     {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo()).select().build();
