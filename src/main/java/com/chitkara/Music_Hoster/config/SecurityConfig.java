@@ -36,13 +36,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 //We will call this token to generate a token for User
                 //Allowed publically
-                .antMatchers("/users/login","/users/registration","/upload","/files","/files/{id}").permitAll()
+                .antMatchers("/users/login","/users/registration","/upload","/files","/files/{id}","/v2/api-docs","/configuration/**", "/swagger*/**", "/webjars/**").permitAll()
+
                 //All request Authenticated
                 .anyRequest().authenticated()
                 .and()
+
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+
 
     }
 
