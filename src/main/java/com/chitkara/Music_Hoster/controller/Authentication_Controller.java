@@ -54,7 +54,7 @@ public class Authentication_Controller {
              return generateToken(user);
         }
         System.out.println("Go to Hell!");
-        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage("Invalid Credentials"));
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseMessage("Invalid Credentials"));
     }
 
     public ResponseEntity<?> generateToken(userLogin user) throws Exception {
