@@ -6,13 +6,13 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 export default function SignUp() {
 
-    localStorage.clear();
+  localStorage.clear();
   const { register, handleSubmit, formState: { errors }} = useForm();
   
   const onSubmit = data => {
   const url="http://localhost:8080/users/registration";
   axios.post(url,data).then((response) => {
-    console.log(response);
+    //console.log(response);
     if(response.data)
     {
         toast.success('User Added Please Sign in', 
@@ -20,7 +20,7 @@ export default function SignUp() {
 
     }
   }, (error) => {
-    console.log(error);
+    //console.log(error);
     toast.warning('User already exists', 
       {position: toast.POSITION.TOP_CENTER,autoClose:3000})
   });

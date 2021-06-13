@@ -46,10 +46,11 @@ componentDidMount(){
         axios
           .get("http://localhost:8080/files")
           .then(response => { 
-            console.log(response);
+            //console.log(response);
             this.setState({ users: response.data})
           })
-          .catch(res => {console.log(res);
+          .catch(res => {
+            //console.log(res);
             toast.error('Session expired Please login again', 
           {position: toast.POSITION.TOP_CENTER,autoClose:3000})});
           
@@ -57,19 +58,19 @@ componentDidMount(){
 }
 
  delete=(e)=>{
-    console.log(e);
+    //console.log(e);
     let url="http://localhost:8080/files/"+e;
     axios.defaults.headers.common[
         "Authorization"
       ] = 'Bearer '+window.localStorage.getItem("token");
       axios
         .delete(url)
-        .then(response => { console.log(response);
+        .then(response => { //console.log(response);
           toast.info('Music Deleted Successfully', 
       {position: toast.POSITION.TOP_CENTER,autoClose:3000})
      this.componentDidMount();
         })
-        .catch(res => {console.log(res);
+        .catch(res => {//console.log(res);
         toast.error('Session expired Please login again', 
       {position: toast.POSITION.TOP_CENTER,autoClose:3000});})
         

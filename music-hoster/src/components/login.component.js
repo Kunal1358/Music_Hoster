@@ -6,12 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 toast.configure();
 export default function Login() {
     
-    localStorage.clear();
+  localStorage.clear();
   const { register, handleSubmit,formState: { errors } } = useForm();
   const onSubmit = data => {
   const url="http://localhost:8080/users/login";
   axios.post(url,data).then(res => {
-    console.log(res);
+    //console.log(res);
     if(res.data)
     {
     window.localStorage.setItem("token", res.data.token);
@@ -20,7 +20,7 @@ export default function Login() {
     
   })
   .catch(err => {
-    console.log(err);
+    //console.log(err);
     toast.error('Invalid Credentials', 
       {position: toast.POSITION.TOP_CENTER,autoClose:3000})
   });

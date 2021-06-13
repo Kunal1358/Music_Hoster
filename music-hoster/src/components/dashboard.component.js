@@ -13,7 +13,7 @@ export default function Dashboard() {
   window.onload=function(){
     //document.getElementsByClassName("nav-link")[0].style.visibilty='hidden';
     if (!window.localStorage.getItem("token")) {
-    console.log("redirect to login");
+    //console.log("redirect to login");
     window.location.href="http://localhost:3000/Sign-in";}
     
 };

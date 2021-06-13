@@ -42,7 +42,7 @@ this.state={
     bodyFormData.append('musicname',this.state.musicname);
     bodyFormData.append('genre',this.state.genre);
     bodyFormData.append('description',this.state.description);
-    console.log(bodyFormData);
+    //console.log(bodyFormData);
 
     axios({
         method: "post",
@@ -52,7 +52,7 @@ this.state={
       }).then(function (response) {
         //event.preventDefault();
         //handle success
-        console.log(response);
+        //console.log(response);
         toast.success('Music Added', 
       {position: toast.POSITION.TOP_CENTER,autoClose:3000})
     })
@@ -60,7 +60,7 @@ this.state={
         //handle error
         toast.error('Session expired, Login again', 
       {position: toast.POSITION.TOP_CENTER,autoClose:3000})
-        console.log(response);
+        //console.log(response);
       });
       window.location.reload();
       //document.getElementsByClassName('tab')[0].innerHTML=" ";
