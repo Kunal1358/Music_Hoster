@@ -1,14 +1,19 @@
 package com.chitkara.Music_Hoster.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="users")
 public class User {
 
 
-    @GeneratedValue(strategy = GenerationType.AUTO)
 
+
+
+
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
 
@@ -27,6 +32,12 @@ public class User {
 
     @Column(name="password" , nullable = false)
     private String password;
+
+
+
+
+
+
 
 
     User(){

@@ -45,21 +45,12 @@ public class MusicController {
     public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("musicname") String title ,@RequestParam("genre") String genre,@RequestParam("description") String desc  ,@RequestParam ("file") MultipartFile file) throws ExpiredJwtException {
         String message = "";
         try {
-        //Date d =jwtHelper.getExpirationDateFromToken(Token);
-
-        ////if(d.getTime()<System.currentTimeMillis())
-        //{
-        //    message="token expired, Please login again";
-         //   return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage(message));
-        //}
-
-
             MusicService.store(title, genre, desc,file);
             message = "Uploaded the file successfully: " + file.getOriginalFilename();
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage(message));
         }
         catch(ExpiredJwtException f){
-            message ="Session Expired, Redirecting to login";
+            message ="Session Expired, please login again";
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseMessage(message));
         }
 
@@ -71,6 +62,7 @@ public class MusicController {
 
     @GetMapping("/files")
     public ResponseEntity<List<Music>> getListFiles() throws ExpiredJwtException {
+
         String message="";
         List<Music> files = MusicService.getAllFiles().map(dbFile -> {
             String fileDownloadUri = ServletUriComponentsBuilder
@@ -84,6 +76,7 @@ public class MusicController {
                     fileDownloadUri,
                     dbFile.getGenre(),
                     dbFile.getDescription(),
+                    dbFile.getId(),
                     dbFile.getData().length);
         }).collect(Collectors.toList());
             return ResponseEntity.status(HttpStatus.OK).body(files);
@@ -103,7 +96,7 @@ public class MusicController {
             return ResponseEntity.status(HttpStatus.OK).body(new ResponseMessage("Deleted Successfuly"));
         }
         catch (ExpiredJwtException  e){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseMessage("Not Deleted"));
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseMessage("Session Expired, please login again"));
         }
     }
 }

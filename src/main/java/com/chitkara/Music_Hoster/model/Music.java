@@ -26,6 +26,11 @@ public class Music {
     @Lob
     private byte[] data;
 
+
+
+
+
+
     public Music() {
     }
 
@@ -37,12 +42,15 @@ public class Music {
         this.data = data;
     }
 
-    public Music(String musicName,String url,String description,String genre,long size) {
+    public Music(String musicName,String url,String description,String genre,String id,long size) {
         this.MusicName = musicName;
         this.url = url;
-        this.size = size;
-        this.Description = description;
         this.Genre = genre;
+        this.Description = description;
+        this.id=id;
+        this.size = size;
+
+
     }
 
     public String getId() {
