@@ -40,9 +40,9 @@ public class UserService {
         }
     }
     public String getpassword(String username){
-            Optional<User> user =this.UserRepository.findById(username);
-            return user.get().getPassword();
-        }
+        Optional<User> user =this.UserRepository.findById(username);
+        return user.get().getPassword();
+    }
 
 }
 

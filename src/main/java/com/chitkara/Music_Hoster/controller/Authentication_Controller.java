@@ -8,6 +8,7 @@ import com.chitkara.Music_Hoster.service.CustomUserDetailService;
 import com.chitkara.Music_Hoster.security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-@CrossOrigin(origins = "http://localhost:3000",
+import java.util.Base64;
+
+@CrossOrigin(origins = "http://localhost:3000",    // enables cross-origin resource sharing only for this specific methods. By default, its allows all origins, all headers, and the HTTP methods
         methods = {RequestMethod.OPTIONS, RequestMethod.GET,
                 RequestMethod.POST, RequestMethod.PUT,
                 RequestMethod.DELETE}, allowedHeaders = "*",
@@ -43,18 +46,19 @@ public class Authentication_Controller {
     @Autowired
     private JwtUtil jwtHelper;
 
+
     @RequestMapping(value = "/users/login",method =RequestMethod.POST)
     public Object checkUser(@RequestBody String data) throws Exception {
 
         System.out.println(data);
-        userLogin user = new ObjectMapper().readValue(data, userLogin.class);
+        userLogin user = new ObjectMapper().readValue(data, userLogin.class); //changing string data into Model type object which we made
         System.out.println(user.toString());
         if(UserService.loginUser(user))
         {
              return generateToken(user);
         }
         System.out.println("Go to Hell!");
-        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(new ResponseMessage("Invalid Credentials"));
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new ResponseMessage("Invalid Credentials"));
     }
 
     public ResponseEntity<?> generateToken(userLogin user) throws Exception {
