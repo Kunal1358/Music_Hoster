@@ -1,0 +1,74 @@
+.modal{
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    background:rgba(255, 255, 255, 0.95);
+    z-index: 9;
+}
+
+.title{
+    font-size: 2rem;
+    color: #000;
+    margin-bottom: 1rem;
+    font-family: 'ModalFont';
+}
+
+.subtitle{
+    font-size: 1rem;
+    font-family:'ModalFont';
+    margin-bottom: 3rem;
+    color: #757575;
+}
+
+.btn{
+    padding: 0.6rem 1rem;
+    font-family: 'ModalSubtFont';
+    border-radius: 4px;
+    font-size: 1rem;
+    margin:0.3rem
+}
+
+.action-btn{
+    color:#FFF;
+    background-color:#CC5454;
+    border: 1px solid #CC5454;
+}
+
+.dismiss-btn{
+    color:#292929;
+    background-color:transparent;
+    border: 1px solid #292929;
+}
+
+@font-face {
+    font-family: 'ModalFont';
+    src: url('../assets/ITCCharter.otf');
+  }
+
+  @font-face {
+    font-family: 'ModalSubtFont';
+    src: url('../assets/Charter.ttf');
+  }
+
+.content-wrapper{
+    width: 50%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFF;
+    border: 1px solid #CCC;
+    border-radius: 8px;
+}
+
+.btns{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content:center
+}
